@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "587203270441",
+    "firebase_url": "https://appcomputadores-4ff1f-default-rtdb.firebaseio.com",
+    "project_id": "appcomputadores-4ff1f",
+    "storage_bucket": "appcomputadores-4ff1f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587203270441:android:ee24f74e4ad82faadfc938",
+        "android_client_info": {
+          "package_name": "com.example.app_computadores"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgXE_zA5iL0dgVBmxGQK0ZEa6NU8hRf1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587203270441:android:d85191b998ca05a6dfc938",
+        "android_client_info": {
+          "package_name": "com.tuusuario.appcomputadores"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgXE_zA5iL0dgVBmxGQK0ZEa6NU8hRf1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
