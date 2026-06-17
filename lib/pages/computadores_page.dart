@@ -98,8 +98,15 @@ class _ComputadoresPageState extends State<ComputadoresPage> {
       body: StreamBuilder<List<Computador>>(
         stream: service.read(),
         builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}')
+            );
+        }
+
           if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator(),
+            );
+            
           }
 
           final data = snapshot.data!;

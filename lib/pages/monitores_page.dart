@@ -14,36 +14,92 @@ class _MonitoresPageState extends State<MonitoresPage> {
 
   void form({Monitor? m}) {
     final marca = TextEditingController(text: m?.marca ?? '');
+    final modelo = TextEditingController(text: m?.modelo ?? '');
+    final tipoPanel = TextEditingController(text: m?.tipoPanel ?? '');
+    final frecuenciaHz = TextEditingController(
+      text: m?.frecuenciaHz.toString() ?? '',
+    );
     final pulgadas = TextEditingController(text: m?.pulgadas.toString() ?? '');
     final resolucion = TextEditingController(text: m?.resolucion ?? '');
     final precio = TextEditingController(text: m?.precio.toString() ?? '');
 
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
-        title: Text(m == null ? "Agregar Monitor" : "Editar Monitor"),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(controller: marca, decoration: const InputDecoration(labelText: "Marca")),
-            TextField(controller: pulgadas, decoration: const InputDecoration(labelText: "Pulgadas")),
-            TextField(controller: resolucion, decoration: const InputDecoration(labelText: "Resolución")),
-            TextField(controller: precio, decoration: const InputDecoration(labelText: "Precio")),
-          ],
-        ),
-        actions: [
+          builder: (_) => AlertDialog(
+            title: Text(
+              m == null ? "Agregar Monitor" : "Editar Monitor",
+            ),
+            content: SizedBox(
+                width: 400,
+                height: 450,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: marca,
+                      decoration: const InputDecoration(
+                        labelText: "Marca",
+                      ),
+                    ),
+                    TextField(
+                      controller: modelo,
+                      decoration: const InputDecoration(
+                        labelText: "Modelo",
+                      ),
+                    ),
+                    TextField(
+                      controller: pulgadas,
+                      decoration: const InputDecoration(
+                        labelText: "Pulgadas",
+                      ),
+                    ),
+                    TextField(
+                      controller: tipoPanel,
+                      decoration: const InputDecoration(
+                        labelText: "Tipo de Panel",
+                      ),
+                    ),
+                    TextField(
+                      controller: resolucion,
+                      decoration: const InputDecoration(
+                        labelText: "Resolución",
+                      ),
+                    ),
+                    TextField(
+                      controller: frecuenciaHz,
+                      decoration: const InputDecoration(
+                        labelText: "Frecuencia (Hz)",
+                      ),
+                    ),
+                    TextField(
+                      controller: precio,
+                      decoration: const InputDecoration(
+                        labelText: "Precio",
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: const Text("Cancelar"),
           ),
           ElevatedButton(
             onPressed: () async {
-              final monitor = Monitor(
-                id: m?.id,
-                marca: marca.text,
-                pulgadas: double.tryParse(pulgadas.text) ?? 0,
-                resolucion: resolucion.text,
-                precio: double.tryParse(precio.text) ?? 0,
+             final monitor = Monitor(
+              id: m?.id,
+              marca: marca.text,
+              modelo: modelo.text,
+              pulgadas: double.tryParse(pulgadas.text) ?? 0,
+              tipoPanel: tipoPanel.text,
+              resolucion: resolucion.text,
+              frecuenciaHz: int.tryParse(frecuenciaHz.text) ?? 0,
+              precio: double.tryParse(precio.text) ?? 0,
+              fechaRegistro:
+              m?.fechaRegistro ?? DateTime.now(),
               );
 
               if (m == null) {
@@ -55,7 +111,7 @@ class _MonitoresPageState extends State<MonitoresPage> {
               Navigator.pop(context);
             },
             child: const Text("Guardar"),
-          )
+          ),
         ],
       ),
     );

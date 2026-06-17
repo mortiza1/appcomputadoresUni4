@@ -3,8 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'login_page.dart';
-import 'package:app_computadores/pages/computadores_page.dart';
-import 'package:app_computadores/pages/monitores_page.dart';
 import 'pages/home_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,28 +49,3 @@ class AuthGate extends StatelessWidget {
   }
 }
 
-/// HOME
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("App Computadores"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-            },
-          )
-        ],
-      ),
-      body: const Center(
-        child: Text("Bienvenido al sistema",
-            style: TextStyle(fontSize: 18)),
-      ),
-    );
-  }
-}

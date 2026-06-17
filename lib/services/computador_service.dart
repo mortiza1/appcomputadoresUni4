@@ -2,11 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/computador.dart';
 
 class ComputadorService {
-  final CollectionReference ref =
+  final CollectionReference<Map<String, dynamic>> ref =
       FirebaseFirestore.instance.collection('computadores');
 
   Future<void> create(Computador c) async {
-    await ref.add(c.toMap());
+    try {
+      await ref.add(c.toMap());
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Stream<List<Computador>> read() {
@@ -14,17 +18,25 @@ class ComputadorService {
       return snapshot.docs.map((doc) {
         return Computador.fromMap(
           doc.id,
-          doc.data() as Map<String, dynamic>,
+          doc.data(),
         );
       }).toList();
     });
   }
 
   Future<void> update(Computador c) async {
-    await ref.doc(c.id).update(c.toMap());
+    try {
+      await ref.doc(c.id).update(c.toMap());
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<void> delete(String id) async {
-    await ref.doc(id).delete();
+    try {
+      await ref.doc(id).delete();
+    } catch (e) {
+      rethrow;
+    }
   }
 }
