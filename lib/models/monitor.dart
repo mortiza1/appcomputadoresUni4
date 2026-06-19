@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Monitor {
   String? id;
   String marca;
@@ -30,9 +32,9 @@ class Monitor {
       "resolucion": resolucion,
       "frecuenciaHz": frecuenciaHz,
       "precio": precio,
-      "fechaRegistro": fechaRegistro,
-    };
-  }
+      "fechaRegistro": Timestamp.fromDate(fechaRegistro),    
+      };
+    }
 
   factory Monitor.fromMap(
     String id,
@@ -45,7 +47,7 @@ class Monitor {
       pulgadas: (map["pulgadas"] ?? 0).toDouble(),
       tipoPanel: map["tipoPanel"] ?? "",
       resolucion: map["resolucion"] ?? "",
-      frecuenciaHz: (map["frecuenciaHz"] ?? 0).toDouble(),
+      frecuenciaHz: (map["frecuenciaHz"] ?? 0),
       precio: (map["precio"] ?? 0).toDouble(),
       fechaRegistro: (map["fechaRegistro"]?.toDate() ?? DateTime.now()),
     );
