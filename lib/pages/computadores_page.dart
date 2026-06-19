@@ -53,36 +53,43 @@ class _ComputadoresPageState extends State<ComputadoresPage> {
           ),
           ElevatedButton(
             onPressed: () async {
-              final comp = Computador(
-                id: c?.id,
-                marca: marca.text,
-                categoria: categoria.text,
-                marcaCpu: cpu.text,
-                velocidadCpu: int.parse(velocidad.text),
-                tecnologiaRam: "DDR4",
-                capacidadRam: int.parse(ram.text),
-                tecnologiaDisco: "SSD",
-                capacidadDisco: int.parse(disco.text),
-                numPuertosUSB: int.parse(usb.text),
-                numPuertosHDMI: int.parse(hdmi.text),
-                marcaMonitor: monitor.text,
-                pulgadas: double.parse(pulgadas.text),
-                precio: double.parse(precio.text),
-              );
+              try {
+                final comp = Computador(
+                  id: c?.id,
+                  marca: marca.text,
+                  categoria: categoria.text,
+                  marcaCpu: cpu.text,
+                  velocidadCpu: int.tryParse(velocidad.text) ?? 0,
+                  tecnologiaRam: "DDR4",
+                  capacidadRam: int.tryParse(ram.text) ?? 0,
+                  tecnologiaDisco: "SSD",
+                  capacidadDisco: int.tryParse(disco.text) ?? 0,
+                  numPuertosUSB: int.tryParse(usb.text) ?? 0,
+                  numPuertosHDMI: int.tryParse(hdmi.text) ?? 0,
+                  marcaMonitor: monitor.text,
+                  pulgadas: double.tryParse(pulgadas.text) ?? 0,
+                  precio: double.tryParse(precio.text) ?? 0,
+                );
 
-              if (c == null) {
-                await service.create(comp);
-              } else {
-                await service.update(comp);
-              }
+                if (c == null) {
+                  await service.create(comp);
+                  } else {
+                    await service.update(comp);
+                    }
 
-              Navigator.pop(context);
-            },
-            child: const Text("Guardar"),
+                if (!mounted) return;
+                  Navigator.pop(context);
+
+                 } catch (e) {
+                  print("ERROR GUARDANDO: $e");
+                  }   
+                },
+                  child: const Text("Guardar"),
+
+              ), 
+            ],
           ),
-        ],
-      ),
-    );
+      );
   }
 
   @override
